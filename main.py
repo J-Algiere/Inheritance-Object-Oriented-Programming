@@ -1,6 +1,7 @@
 """
-Inheritance (Object-Oriented Programming)
+Inheritance (Object-Oriented Programming) with a List of Pets
 """
+
 class Pet:
     def __init__(self, name, age):
         self.name = name
@@ -11,7 +12,7 @@ class Pet:
 
 class Dog(Pet):
     def __init__(self, name, age, breed):
-        super().__init__(name, age)  # Inherit name and age
+        super().__init__(name, age)
         self.breed = breed
 
     def speak(self) -> str:
@@ -26,12 +27,22 @@ class Cat(Pet):
         return "Meow!"
 
 def main():
-    dog = Dog("Raven", 2, "Pitbull")
-    cat = Cat("Olive", 1, "Tabby")
-    print(f"{dog.name} is a {dog.breed}, {dog.age} year(s) old.")
-    print(f"{dog.name} says: {dog.speak()}")
-    print(f"{cat.name} is a {cat.breed}, {cat.age} year(s) old.")
-    print(f'{cat.name} says: {cat.speak()}')
+    # Create a list to hold all pets
+    pets = []
+
+    # Add some pets to the list
+    pets.append(Dog("Raven", 2, "Pitbull"))
+    pets.append(Cat("Olive", 1, "Tabby"))
+    pets.append(Dog("Buddy", 4, "Labrador"))
+    pets.append(Cat("Mittens", 3, "Siamese"))
+
+    # Loop through the pets and print info
+    print("---- Pet Roster ----")
+    for pet in pets:
+        print(f"{pet.name} ({type(pet).__name__}) - Age: {pet.age}")
+        print(f"Breed: {pet.breed}")
+        print(f"{pet.name} says: {pet.speak()}")
+        print()
 
 if __name__ == "__main__":
     main()
