@@ -1,0 +1,26 @@
+[
+    {
+        "petType": "Dog",
+        "name": "Raven",
+        "age": 2,
+        "breed": "Pitbull"
+    },
+    {
+        "petType": "Cat",
+        "name": "Olive",
+        "age": 1,
+        "breed": "Tabby"
+    },
+    {
+        "petType": "Dog",
+        "name": "Buddy",
+        "age": 4,
+        "breed": "Labrador"
+    },
+    {
+        "petType": "Cat",
+        "name": "Mittens",
+        "age": 3,
+        "breed": "Siamese"
+    }
+]
