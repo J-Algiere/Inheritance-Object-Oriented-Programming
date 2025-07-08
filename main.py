@@ -51,32 +51,61 @@ class Cat(Pet):
                 "age": self.age,
                 "breed": self.breed
             }
+def load_pets_from_file(filename):
+    with open(filename, "r") as json_file:
+        pet_data_list = json.load(json_file)
+
+    pets = []
+    for pet_data in pet_data_list:
+        if pet_data['petType'] == "Dog":
+            pets.append(Dog(pet_data['name'], pet_data['age'], pet_data['breed']))
+        elif pet_data['petType'] == "Cat":
+            pets.append(Cat(pet_data['name'], pet_data['age'], pet_data['breed']))
+    return pets
 
 def main():
     # Create a list to hold all pets
-    pets = []
+    orginal_pets = []
 
     # Add some pets to the list
-    pets.append(Dog("Raven", 2, "Pitbull"))
-    pets.append(Cat("Olive", 1, "Tabby"))
-    pets.append(Dog("Buddy", 4, "Labrador"))
-    pets.append(Cat("Mittens", 3, "Siamese"))
+    orginal_pets.append(Dog("Raven", 2, "Pitbull"))
+    orginal_pets.append(Cat("Olive", 1, "Tabby"))
+    orginal_pets.append(Dog("Buddy", 4, "Labrador"))
+    orginal_pets.append(Cat("Mittens", 3, "Siamese"))
 
     # Loop through the pets and print info
-    print("---- Pet Roster ----")
+    """print("---- Pet Roster ----")
     for pet in pets :
         print(f"{pet.name} ({type(pet).__name__}) - Age: {pet.age}")
         print(f"Breed: {pet.breed}")
         print(f"{pet.name} says: {pet.speak()}")
-        print()
+        print()"""
 
     # Create a list of Dictionaries for pets list
-    pet_dict = [pet.to_dict()for pet in pets]
+    pet_dict = [pet.to_dict()for pet in orginal_pets]
 
 
     with open("pets.json", "w") as json_file:
         json.dump(pet_dict, json_file, indent=4)
-        print(json.dumps(pet_dict, indent=4))
+
+
+    all_loaded_pets = load_pets_from_file("pets.json")
+
+    loaded_dogs = [pet for pet in all_loaded_pets if isinstance(pet, Dog)]
+    loaded_cats = [pet for pet in all_loaded_pets if isinstance(pet, Cat)]
+
+    print("--------Loaded dogs--------")
+    for dog in loaded_dogs:
+        print(f'{dog.name}\nAge: {dog.age}\nBreed: {dog.breed}\n{dog.name} says {dog.speak()}', end="\n\n")
+
+
+    print("--------Loaded cats--------")
+    for cat in loaded_cats:
+        print(f'{cat.name}\nAge: {cat.age}\nBreed: {cat.breed}\n{cat.name} says {cat.speak()}', end="\n\n")
+
+
+
+
 
 if __name__ == "__main__":
     main()
