@@ -1,6 +1,3 @@
-"""
-Inheritance (Object-Oriented Programming) with a List of Pets
-"""
 from abc import ABC, abstractmethod
 import json
 
@@ -51,6 +48,7 @@ class Cat(Pet):
                 "age": self.age,
                 "breed": self.breed
             }
+
 def load_pets_from_file(filename):
     with open(filename, "r") as json_file:
         pet_data_list = json.load(json_file)
@@ -73,14 +71,6 @@ def main():
     orginal_pets.append(Dog("Buddy", 4, "Labrador"))
     orginal_pets.append(Cat("Mittens", 3, "Siamese"))
 
-    # Loop through the pets and print info
-    """print("---- Pet Roster ----")
-    for pet in pets :
-        print(f"{pet.name} ({type(pet).__name__}) - Age: {pet.age}")
-        print(f"Breed: {pet.breed}")
-        print(f"{pet.name} says: {pet.speak()}")
-        print()"""
-
     # Create a list of Dictionaries for pets list
     pet_dict = [pet.to_dict()for pet in orginal_pets]
 
@@ -102,10 +92,6 @@ def main():
     print("--------Loaded cats--------")
     for cat in loaded_cats:
         print(f'{cat.name}\nAge: {cat.age}\nBreed: {cat.breed}\n{cat.name} says {cat.speak()}', end="\n\n")
-
-
-
-
 
 if __name__ == "__main__":
     main()
