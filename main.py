@@ -1,7 +1,9 @@
 from abc import ABC, abstractmethod
 import json
 
+# Parent Class
 class Pet(ABC):
+
     def __init__(self, name, age):
         self.name = name
         self.age = age
@@ -13,6 +15,7 @@ class Pet(ABC):
     def to_dict(self):
         pass
 
+# Child Class
 class Dog(Pet):
 
     def __init__(self, name, age, breed):
@@ -31,6 +34,7 @@ class Dog(Pet):
                 "breed": self.breed
             }
 
+# Child Class
 class Cat(Pet):
 
     def __init__(self, name, age, breed):
@@ -54,6 +58,7 @@ def load_pets_from_file(filename):
         pet_data_list = json.load(json_file)
 
     pets = []
+
     for pet_data in pet_data_list:
         if pet_data['petType'] == "Dog":
             pets.append(Dog(pet_data['name'], pet_data['age'], pet_data['breed']))
@@ -92,6 +97,7 @@ def main():
     print("--------Loaded cats--------")
     for cat in loaded_cats:
         print(f'{cat.name}\nAge: {cat.age}\nBreed: {cat.breed}\n{cat.name} says {cat.speak()}', end="\n\n")
+
 
 if __name__ == "__main__":
     main()
